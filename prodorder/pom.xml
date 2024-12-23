@@ -15,6 +15,7 @@
 
     <dependencies>
 
+
         <dependency>
             <groupId>cn.edu.xmu.javaee</groupId>
             <artifactId>core</artifactId>
@@ -111,6 +112,12 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bootstrap</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>cn.edu.xmu.oomall.comment</groupId>
+            <artifactId>comment</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 

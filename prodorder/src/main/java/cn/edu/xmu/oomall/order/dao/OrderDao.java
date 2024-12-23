@@ -4,15 +4,18 @@ package cn.edu.xmu.oomall.order.dao;
 
 import cn.edu.xmu.javaee.core.util.JacksonUtil;
 import cn.edu.xmu.oomall.order.dao.bo.Order;
+import cn.edu.xmu.oomall.order.dao.bo.OrderItem;
 import cn.edu.xmu.oomall.order.mapper.OrderItemPoMapper;
 import cn.edu.xmu.oomall.order.mapper.OrderPoMapper;
 import cn.edu.xmu.oomall.order.mapper.po.OrderItemPo;
 import cn.edu.xmu.oomall.order.mapper.po.OrderPo;
 import org.apache.rocketmq.spring.core.RocketMQTemplate;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Repository;
+import java.util.Optional;
 
 @Repository
 public class OrderDao {
@@ -26,6 +29,17 @@ public class OrderDao {
     public OrderDao(OrderPoMapper orderPoMapper, OrderItemPoMapper orderItemPoMapper) {
         this.orderPoMapper = orderPoMapper;
         this.orderItemPoMapper = orderItemPoMapper;
+    }
+
+    public OrderItem findById(Long id)
+    {
+        Optional<OrderItemPo> orderItemPo = orderItemPoMapper.findById(id);
+        if (orderItemPo == null) {
+            return null;
+        }
+        OrderItem orderItemBo = new OrderItem();
+        BeanUtils.copyProperties(orderItemPo,orderItemBo);
+        return orderItemBo;
     }
 
 

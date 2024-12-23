@@ -1,0 +1,23 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: nacos
+  jackson:
+    #JSON的时间数据的时区
+    time-zone: GMT+8
+  jpa:
+    #控制输出SQL
+    show-sql: true
+    #控制输出格式
+    properties:
+      hibernate:
+        format_sql: true
+
+
+

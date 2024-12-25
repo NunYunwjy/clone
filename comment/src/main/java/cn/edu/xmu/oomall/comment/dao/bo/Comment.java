@@ -6,13 +6,14 @@ import cn.edu.xmu.javaee.core.model.bo.OOMallObject;
 import cn.edu.xmu.oomall.comment.dao.CommentDao;
 import cn.edu.xmu.oomall.comment.mapper.po.CommentPo;
 import lombok.*;
+import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 
 
 @ToString(callSuper = true)
 @NoArgsConstructor
-
+@Component
 public class Comment extends OOMallObject implements Serializable{
 
     public Comment(Long id, Long creatorId, String creatorName, Long modifierId, String modifierName, LocalDateTime gmtCreate, LocalDateTime gmtModified, Long orderId, Long onSaleId, Integer quantity, Long price, Long discountPrice, Long point, String name, Long actId, Long couponId, Byte commented) {
@@ -67,7 +68,7 @@ public class Comment extends OOMallObject implements Serializable{
     {
         try {
             // 根据评论 ID 获取待审核的评论对象
-            CommentPo comment = commentDao.findById(commentId);
+            Comment comment = commentDao.findById(commentId);
 
             if (comment != null) {
 
@@ -100,7 +101,7 @@ public class Comment extends OOMallObject implements Serializable{
     {
         try {
             // 根据评论 ID 获取待审核的评论对象
-            CommentPo comment = commentDao.findById(commentId);
+            Comment comment = commentDao.findById(commentId);
 
             if (comment != null) {
 

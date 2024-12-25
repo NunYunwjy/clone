@@ -72,7 +72,7 @@ public class Comment extends OOMallObject implements Serializable{
 
             if (comment != null) {
 
-                comment.setStatus(result);
+                comment.setStatus(result);//result=0表示未通过，result=1表示通过
                 if(message != null)
                 {
                     comment.setMessage(message);//更新审核意见
@@ -81,8 +81,10 @@ public class Comment extends OOMallObject implements Serializable{
                 if (status != -1) {
                     if (status == 1) {
                         System.out.println("评论已审核通过！");
+                        CommentPo commentPo = commentDao.reviewComment(comment);
                     } else if(status == 0){
                         System.out.println("评论未通过审核！");
+                        CommentPo commentPo = commentDao.reviewComment(comment);
                     }
                 } else {
                     System.out.println("评论审核失败！");
@@ -106,11 +108,11 @@ public class Comment extends OOMallObject implements Serializable{
             if (comment != null) {
 
                 comment.setStatus(2);//更改评论状态，将其隐藏
-
                 // 根据更新结果输出相应的信息
                 if (status == 2) {
 
                     System.out.println("评论隐藏成功！");
+                    CommentPo commentPo = commentDao.hideComment(comment);
 
                 } else {
                     System.out.println("评论隐藏失败！");
@@ -123,5 +125,4 @@ public class Comment extends OOMallObject implements Serializable{
             e.printStackTrace();
         }
     }
-
 }

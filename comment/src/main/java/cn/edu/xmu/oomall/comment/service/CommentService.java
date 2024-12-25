@@ -5,9 +5,11 @@ import cn.edu.xmu.oomall.comment.dao.bo.Comment;
 import cn.edu.xmu.oomall.comment.mapper.po.CommentPo;
 import cn.edu.xmu.oomall.order.dao.OrderDao;
 import cn.edu.xmu.oomall.order.dao.bo.OrderItem;
+import cn.edu.xmu.oomall.order.dao.openfeign.dto.CommentDto;
 import jakarta.transaction.Transactional;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -26,11 +28,13 @@ public class CommentService {
     //创建评论
     public void createComment(Long orderItemId, Comment commentBo)
     {
+        CommentDto commentDto = new CommentDto();
         OrderItem orderItem = orderDao.findById(orderItemId);
         if (orderItem == null) {
              throw new IllegalArgumentException("Order item not found");
          }
-         orderItem.CreateComment(commentBo);
+        BeanUtils.copyProperties(commentBo,commentDto );
+         orderItem.CreateComment(commentDto);
     }
 
     public Comment findCommentbyid(Long commentId)

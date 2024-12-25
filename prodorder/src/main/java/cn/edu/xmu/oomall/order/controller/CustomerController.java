@@ -10,7 +10,6 @@ import cn.edu.xmu.javaee.core.model.ReturnObject;
 import cn.edu.xmu.javaee.core.model.dto.UserDto;
 import cn.edu.xmu.oomall.order.controller.vo.OrderVo;
 import cn.edu.xmu.oomall.order.mapper.SearchMapper;
-import cn.edu.xmu.oomall.order.service.OrderService;
 import cn.edu.xmu.oomall.order.service.dto.ConsigneeDto;
 import cn.edu.xmu.oomall.order.service.dto.OrderItemDto;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +25,7 @@ import java.util.stream.Collectors;
 @RequestMapping(produces = "application/json;charset=UTF-8")
 public class CustomerController {
 
-    private final OrderService orderService;
+    //private final OrderService orderService;
 
     private final SearchMapper searchMapper;
 

@@ -44,6 +44,6 @@ public class CommentController {
         CommentDto commentDto = new CommentDto();
         BeanUtils.copyProperties(commentVo, commentDto);
         BeanUtils.copyProperties(commentDto, commentBo);
-        commentService.createComment(commentId, commentBo);
+        commentService.hideComment(commentId, commentBo);
     }
 }

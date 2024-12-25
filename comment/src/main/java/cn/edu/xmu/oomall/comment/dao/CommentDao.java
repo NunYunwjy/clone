@@ -30,17 +30,29 @@ public class CommentDao {
             System.out.println("评论失败！");
         }
     }
-
-
     public Comment findById(Long id)
     {
         Optional<CommentPo> commentPo = commentmapper.findById(id);
-        if (commentPo.isEmpty()) {
+        if (commentPo == null) {
             return null;
         }
         Comment commentBo = new Comment();
         BeanUtils.copyProperties(commentPo,commentBo);
         return commentBo;
+    }
+
+    public CommentPo reviewComment(Comment commentBo)
+    {
+        CommentPo commentpo =new CommentPo();
+        BeanUtils.copyProperties(commentBo,commentpo);
+        return commentmapper.save(commentpo);
+    }
+
+    public CommentPo hideComment(Comment commentBo)
+    {
+        CommentPo commentpo =new CommentPo();
+        BeanUtils.copyProperties(commentBo,commentpo);
+        return commentmapper.save(commentpo);
     }
 }
 

@@ -23,11 +23,6 @@
 
     <dependencies>
 
-        <dependency>
-            <groupId>cn.edu.xmu.oomall</groupId>
-            <artifactId>prodorder</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
 
         <dependency>
             <groupId>cn.edu.xmu.javaee</groupId>
@@ -125,6 +120,12 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bootstrap</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>cn.edu.xmu.oomall</groupId>
+            <artifactId>prodorder</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 

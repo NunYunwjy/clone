@@ -1,20 +1,24 @@
 //School of Informatics Xiamen University, GPL-3.0 license
 
 package cn.edu.xmu.oomall.order.dao.bo;
-import cn.edu.xmu.oomall.comment.dao.CommentDao;
-import cn.edu.xmu.oomall.comment.dao.bo.Comment;
 
 import cn.edu.xmu.javaee.core.model.bo.OOMallObject;
-import cn.edu.xmu.oomall.comment.mapper.po.CommentPo;
+import cn.edu.xmu.oomall.order.dao.openfeign.dto.CommentDto;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.Id;
 import lombok.*;
+import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @ToString(callSuper = true)
 @NoArgsConstructor
+@Component
 public class OrderItem extends OOMallObject implements Serializable {
 
     @Builder
@@ -82,26 +86,19 @@ public class OrderItem extends OOMallObject implements Serializable {
 
     }
 
-    //创建评论
-    private CommentDao commentDao;
+    @Autowired
+    private RocketMQTemplate rocketMQTemplate;
 
-    public void CreateComment(Comment commentBo)
-    {
+    private ObjectMapper objectMapper = new ObjectMapper();
+
+    public void CreateComment(CommentDto commentDto) {
         try {
-            commentBo.setOrderItemId(id);
-            commentBo.setCreatorId(creatorId);
-            commentBo.setCreatorName(creatorName);
-            CommentPo result = commentDao.CreateComment(commentBo);
-            if (result!= null) {
-                OrderItem.super.setId(result.getId());
-                System.out.println("评论成功！待审核");
-            } else {
-                System.out.println("评论失败！");
-            }
-        } catch (Exception e) {
-            System.out.println("评论失败！");
+            String commentJson = objectMapper.writeValueAsString(commentDto);
+            rocketMQTemplate.convertAndSend("comment-topic", commentJson);
+        } catch (JsonProcessingException e) {
+            // 处理序列化异常
             e.printStackTrace();
         }
-
     }
+
 }

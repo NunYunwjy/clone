@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import jakarta.persistence.*;
+import org.springframework.stereotype.Component;
 
 @Entity
 @Table(name = "comment")
@@ -15,6 +16,7 @@ import jakarta.persistence.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Component
 public class CommentPo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

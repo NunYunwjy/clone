@@ -6,5 +6,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface Commentmapper extends JpaRepository<CommentPo, Long> {
-    CommentPo saveComment(CommentPo commentPo);
 }

@@ -1,4 +1,4 @@
-management:
+  management:
   endpoints:
     web:
       exposure:
@@ -57,19 +57,25 @@ spring:
       hibernate:
         format_sql: true
 
-# 配置rocketmq
 rocketmq:
-  # 指定namesrv地址
-  name-server: rocketmq-namesrv:9876
+  name-server: localhost:9876
   producer:
+    group: order-producer-group
+
+
+# 配置rocketmq
+#rocketmq:
+  # 指定namesrv地址
+ # name-server: rocketmq-namesrv:9876
+  #producer:
     #生产者group名称
-    group: order_group
+   # group: order_group
     #一次发送多少数量消息
-    max-message-size: 4096
+    #max-message-size: 4096
     #发送消息超时时间,默认3000
-    send-message-timeout: 3000
+    #send-message-timeout: 3000
     #发送消息失败重试次数，默认2
-    retry-times-when-send-async-failed: 2
+    #retry-times-when-send-async-failed: 2
 
 server:
   port: 8082

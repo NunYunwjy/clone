@@ -14,6 +14,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
@@ -25,11 +26,12 @@ public class OrderDao {
     private OrderItemPoMapper orderItemPoMapper;
 
 
-    @Autowired
+
     public OrderDao(OrderPoMapper orderPoMapper, OrderItemPoMapper orderItemPoMapper) {
         this.orderPoMapper = orderPoMapper;
         this.orderItemPoMapper = orderItemPoMapper;
     }
+
 
     public OrderItem findById(Long id)
     {

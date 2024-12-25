@@ -8,9 +8,12 @@
         <artifactId>oomall</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-
-    <groupId>cn.edu.xmu.oomall.comment</groupId>
+    <groupId>cn.edu.xmu.oomall</groupId>
     <artifactId>comment</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>comment</name>
+    <description>comment module for OOMALL</description>
+
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -131,7 +134,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>cn.edu.xmu.oomall.product.ProductApplication</mainClass>
+                    <mainClass>cn.edu.xmu.oomall.comment.OrderApplication</mainClass>
                 </configuration>
             </plugin>
 

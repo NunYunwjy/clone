@@ -17,6 +17,7 @@ public class CommentService {
     private CommentDao commentDao;
 
 
+    //创建评论
     public void createComment(Long orderItemId, Comment commentBo)
     {
         OrderItem orderItem = orderDao.findById(orderItemId);
@@ -24,6 +25,12 @@ public class CommentService {
              throw new IllegalArgumentException("Order item not found");
          }
         orderItem.CreateComment(commentBo);
+    }
+
+    public Comment findCommentbyid(Long commentId)
+    {
+        Comment comment = commentDao.findById(commentId);
+        return comment;
     }
 
     @SneakyThrows

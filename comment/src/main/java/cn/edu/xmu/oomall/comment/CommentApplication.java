@@ -11,9 +11,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @SpringBootApplication(scanBasePackages = {"cn.edu.xmu.javaee.core",
         "cn.edu.xmu.oomall.order"})
 @EnableJpaRepositories(basePackages = "cn.edu.xmu.oomall.comment.mapper")
-@EnableFeignClients
 @EnableDiscoveryClient
-
+@EnableFeignClients
 //TIP 要<b>运行</b>代码，请按 <shortcut actionId="Run"/> 或
 // 点击装订区域中的 <icon src="AllIcons.Actions.Execute"/> 图标。
 public class CommentApplication {

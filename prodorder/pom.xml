@@ -114,7 +114,7 @@
             <artifactId>spring-cloud-starter-bootstrap</artifactId>
         </dependency>
         <dependency>
-            <groupId>cn.edu.xmu.oomall.comment</groupId>
+            <groupId>cn.edu.xmu.oomall</groupId>
             <artifactId>comment</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
